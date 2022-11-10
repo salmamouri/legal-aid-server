@@ -54,6 +54,13 @@ async function run() {
       const reviews = await cursor.toArray();
       res.send(reviews);
     });
+
+    app.get("/reviews/:serviceId", async (req, res) => {
+      const service = req.params.serviceId;
+      const query = { service: service };
+      const serviceReview = await reviewCollection.find(query).toArray();
+      res.send(serviceReview);
+    });
   } finally {
   }
 }
