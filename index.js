@@ -61,6 +61,12 @@ async function run() {
       const serviceReview = await reviewCollection.find(query).toArray();
       res.send(serviceReview);
     });
+
+    app.post("/services", async (req, res) => {
+      const addService = req.body;
+      const result = await serviceCollection.insertOne(addService);
+      res.send(result);
+    });
   } finally {
   }
 }
